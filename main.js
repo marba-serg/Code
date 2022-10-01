@@ -15,11 +15,20 @@ let app = createApp({
         this.inputValue = event.target.value;
     },
     addNewNote() {
-        this.notes.push(this.inputValue);
-        this.inputValue = '';
+        if(this.inputValue.length !== 0){
+          this.notes.push(this.inputValue);
+          this.inputValue = '';
+        }
+      
+    },
+    toUpperCase(item){
+      return item.toUpperCase();
     },
     removeNote (idx) {
         this.notes.splice(idx, 1)
+    },
+    removeAll () {
+      this.notes.splice(0)
     }
   }
 })
