@@ -14,14 +14,17 @@
 
         <div class="card">
 
-           <h1>{{ title}}</h1>
+           <h1 :style="{
+            color: inputValue.length<5?'blue':'red',
+            fontSize: inputValue.length<6?'2rem':'2.5rem' 
+        
+        }">{{ title}}</h1>
 
            <div class="form-control">
 
             <input type="text"
                 :placeholder="holder"
-                v-bind:value = "inputValue" 
-                @input = "inputChangeHandler"
+                v-model = "inputValue" 
                 v-on:keypress.enter = "addNewNote"
                 >
            </div>   
@@ -37,7 +40,8 @@
             <li class="list-item" v-for = "(note, idx) in notes">{{idx+1}}) {{ toUpperCase(note) }}
                 <button class="btn danger" v-on:click = "removeNote(idx)">Удалить</button> 
             </li>
-            
+            <hr>
+            <li><strong>Общее колличество заметок: {{ notes.length }}</strong></li>
            </ul>
 
            <div v-else >Ждём ваших заметок</div>
